@@ -82,13 +82,15 @@
         <div class="links">
             <a href="https://github.com/ZAR0X" title="GitHub"><i class="fab fa-github"></i></a>
             <a href="https://twitter.com/qzarox" title="Twitter"><i class="fab fa-twitter"></i></a>
-            <a href="https://discord.com/" title="Discord"><i class="fab fa-discord"></i></a>
+            <a href="https://zarox.t.me" title="Telegram"><i class="fab fa-telegram"></i></a>
             <a href="mailto:qzarox@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
         </div>
         <div class="quote">"Let it be."</div>
     </div>
     <script>
         // Three.js Setup
+        import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+        
         const scene = new THREE.Scene();
         const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
         const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
@@ -96,17 +98,25 @@
         document.body.appendChild(renderer.domElement);
 
         
-        const geometry = new THREE.BoxGeometry();
+        const geometry = new THREE.TorusKnotGeometry( 10, 2, 80, 16 );
         const material = new THREE.MeshBasicMaterial({ color: 0x8AB4F8, wireframe: true, opacity: 1, transparent: true });
         const cube = new THREE.Mesh(geometry, material);
         scene.add(cube);
         camera.position.z = 5;
 
+        
+        const controls = new OrbitControls( camera, renderer.domElement );
+        controls.target.set( 0, 0.5, 0 );
+        controls.update();
+        controls.enablePan = false;
+        controls.enableDamping = true;
+        
         // Animation loop
         function animate() {
             requestAnimationFrame(animate);
             cube.rotation.x += 0.003;
             cube.rotation.y += 0.005;
+            controls.update();
             renderer.render(scene, camera);
         }
         animate();
