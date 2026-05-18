@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DOOM (1993)</title>
+  <link rel="stylesheet" href="https://v8.js-dos.com/latest/js-dos.css" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { width: 100%; height: 100%; background: #000; overflow: hidden; }
+    #dos { width: 100%; height: 100%; }
+    .jsdos-rsp { width: 100% !important; height: 100% !important; }
+  </style>
+</head>
+<body>
+  <div id="dos"></div>
+  <script src="https://v8.js-dos.com/latest/js-dos.js"></script>
+  <script>
+    Dos(document.getElementById("dos"), {
+      url: "/games/doom/doom.jsdos",
+      dosboxConf: "cycles=max",
+    });
+  </script>
+</body>
+</html>
